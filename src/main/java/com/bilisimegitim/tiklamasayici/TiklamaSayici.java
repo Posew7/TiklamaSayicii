@@ -14,8 +14,18 @@ public class TiklamaSayici extends javax.swing.JFrame {
     /**
      * Creates new form TiklamaSayici
      */
+    private int sayac;
+    //1000 miliseconds = 1 second
+    private final long TOPLAM_SURE = 1000 * 30;
+    private long basZaman;
+    private long gecenZaman;
+    
     public TiklamaSayici() {
         initComponents();
+        setLocationRelativeTo(null);
+        sayac = 0;
+        label.setText(String.valueOf(sayac));
+        basZaman = -1;
     }
 
     /**
@@ -27,21 +37,72 @@ public class TiklamaSayici extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        label = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("30 Saniye De Kaç Kere Tıklayacaksınız ?");
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton1.setText("TIKLA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        label.setForeground(new java.awt.Color(255, 0, 0));
+        label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(label, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        if (basZaman <0) {
+            basZaman = System.currentTimeMillis();
+        } else {
+        }
+        
+        gecenZaman = System.currentTimeMillis()-basZaman;
+        
+        
+        
+        sayac = sayac + 1;
+        label.setText(String.valueOf(sayac));
+        
+        
+        gecenZaman = System.currentTimeMillis()-basZaman;
+
+        if (gecenZaman>=TOPLAM_SURE) {
+            jButton1.setEnabled(false);
+        } else {
+        }
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +140,7 @@ public class TiklamaSayici extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }
